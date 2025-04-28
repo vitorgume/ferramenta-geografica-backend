@@ -19,9 +19,6 @@ public class EmpresaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    private String nome;
-
     private String cnpj;
 
     @Embedded
@@ -29,6 +26,9 @@ public class EmpresaEntity {
 
     @Enumerated(EnumType.ORDINAL)
     private Segmento segmento;
-
     private Boolean visatado;
+    private String nomeFantasia;
+    private String razaoSocial;
+    private String telefone;
+    private String email;
 }

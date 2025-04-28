@@ -14,8 +14,11 @@ import java.util.UUID;
 public class Empresa {
 
     private UUID id;
-    private String nome;
+    private String nomeFantasia;
+    private String razaoSocial;
     private String cnpj;
+    private String telefone;
+    private String email;
     private Endereco endereco;
     private Segmento segmento;
     private Boolean visatado;
