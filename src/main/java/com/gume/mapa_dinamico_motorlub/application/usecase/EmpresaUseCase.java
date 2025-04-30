@@ -1,6 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase;
 
 import com.gume.mapa_dinamico_motorlub.application.gateways.EmpresaGateway;
+import com.gume.mapa_dinamico_motorlub.domain.Cordenadas;
 import com.gume.mapa_dinamico_motorlub.domain.Empresa;
 import com.gume.mapa_dinamico_motorlub.domain.Endereco;
 import com.gume.mapa_dinamico_motorlub.domain.Segmento;
@@ -25,6 +26,7 @@ import java.util.UUID;
 public class EmpresaUseCase {
 
     private final EmpresaGateway gateway;
+    private final CordenadasUseCase cordenadasUseCase;
 
     public List<EmpresaDto> cadastrarEmpresas(MultipartFile arquivo) {
         log.info("Cadastrando empresas...");
@@ -32,6 +34,7 @@ public class EmpresaUseCase {
         if (arquivo.getOriginalFilename().endsWith(".csv")) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(arquivo.getInputStream()))) {
                 String linha;
+                boolean primeiraLinha = true;
                 while ((linha = reader.readLine()) != null) {
                     if (linha.isBlank()) {
                         continue;                     }
@@ -40,6 +43,11 @@ public class EmpresaUseCase {
 
                     if (colunas.length < 21) {
                         throw new RuntimeException("Linha inválida: " + linha);
+                    }
+
+                    if (primeiraLinha) {
+                        primeiraLinha = false;
+                        continue;
                     }
 
                     String cnpj = colunas[0];
@@ -64,6 +72,9 @@ public class EmpresaUseCase {
                             .municipio(municipio)
                             .uf(uf)
                             .build();
+
+                    Cordenadas cordenadas = cordenadasUseCase.buscarCordenadas(endereco);
+                    endereco.setCordenadas(cordenadas);
 
                     Empresa empresa = Empresa.builder()
                             .cnpj(cnpj)
