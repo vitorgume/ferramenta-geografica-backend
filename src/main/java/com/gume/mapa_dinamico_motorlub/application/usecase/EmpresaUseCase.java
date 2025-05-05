@@ -84,7 +84,7 @@ public class EmpresaUseCase {
                             .email(email)
                             .endereco(endereco)
                             .segmento(Segmento.OFICINA_MECANICA)
-                            .visatado(false)
+                            .visitado(false)
                             .build();
 
                     empresas.add(empresa);
@@ -111,11 +111,11 @@ public class EmpresaUseCase {
         return empresaList.stream().map(EmpresaMapper::paraDto).toList();
     }
 
-    public EmpresaDto marcarVisitada(UUID id) {
-        log.info("Marcando como visatada a empresa... Id: {}", id);
+    public EmpresaDto alterarStatus(UUID id) {
         Empresa empresa = this.consultarPorId(id);
+        log.info("Marcando como visatada a empresa... Cnpj: {}", empresa.getCnpj());
 
-        empresa.setVisatado(true);
+        empresa.setVisitado(!empresa.getVisitado());
 
         empresa = gateway.salvar(empresa);
 

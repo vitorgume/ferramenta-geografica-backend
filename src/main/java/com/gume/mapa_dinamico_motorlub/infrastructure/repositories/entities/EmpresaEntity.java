@@ -26,7 +26,7 @@ public class EmpresaEntity {
 
     @Enumerated(EnumType.ORDINAL)
     private Segmento segmento;
-    private Boolean visatado;
+    private Boolean visitado;
     private String nomeFantasia;
     private String razaoSocial;
     private String telefone;

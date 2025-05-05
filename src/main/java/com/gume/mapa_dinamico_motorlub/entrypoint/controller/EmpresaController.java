@@ -30,8 +30,8 @@ public class EmpresaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmpresaDto> marcarVisitada(@PathVariable UUID id) {
-        EmpresaDto resultado = useCase.marcarVisitada(id);
+    public ResponseEntity<EmpresaDto> alteraStatus(@PathVariable UUID id) {
+        EmpresaDto resultado = useCase.alterarStatus(id);
         return ResponseEntity.ok(resultado);
     }
 }

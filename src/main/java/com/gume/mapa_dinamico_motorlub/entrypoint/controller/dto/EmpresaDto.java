@@ -22,5 +22,5 @@ public class EmpresaDto {
     private String email;
     private Endereco endereco;
     private Segmento segmento;
-    private Boolean visatado;
+    private Boolean visitado;
 }

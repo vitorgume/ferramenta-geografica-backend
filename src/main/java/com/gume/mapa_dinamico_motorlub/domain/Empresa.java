@@ -1,9 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -11,6 +8,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Empresa {
 
     private UUID id;
@@ -21,5 +19,5 @@ public class Empresa {
     private String email;
     private Endereco endereco;
     private Segmento segmento;
-    private Boolean visatado;
+    private Boolean visitado;
 }

@@ -4,6 +4,7 @@ import com.gume.mapa_dinamico_motorlub.application.dto.GeocodingResponseDto;
 import com.gume.mapa_dinamico_motorlub.application.gateways.CordenadasGateway;
 import com.gume.mapa_dinamico_motorlub.domain.Cordenadas;
 import com.gume.mapa_dinamico_motorlub.domain.Endereco;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -13,6 +14,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 @Component
+@Slf4j
 public class CordenadaDataProvider implements CordenadasGateway {
 
     private final WebClient webClient;
@@ -32,8 +34,18 @@ public class CordenadaDataProvider implements CordenadasGateway {
 
     @Override
     public Cordenadas buscarCordenadas(Endereco endereco) {
-        String enderecoUri = URLEncoder.encode(endereco.getLogradouro() + ", " + endereco.getNumero() + ", "
-        + endereco.getMunicipio() + ", " + endereco.getUf(), StandardCharsets.UTF_8);
+        log.info("Cordenadas: {}", endereco);
+        String enderecoUri = URLEncoder.encode(
+                endereco.getLogradouro() + ", " +
+                        endereco.getNumero() + ", " +
+                        endereco.getCep() + ", " +
+                        endereco.getBairro() + ", " +
+                        endereco.getMunicipio() + " - " +
+                        endereco.getUf() + ", ",
+                StandardCharsets.UTF_8
+        );
+
+        log.info("Endereço URI: {}", enderecoUri);
 
         String uri = baseUrl + enderecoUri + "&key=" + apiKey;
 
@@ -54,6 +66,8 @@ public class CordenadaDataProvider implements CordenadasGateway {
 
         String longitude = Double.valueOf(location.getLng()).toString();
         String latitude = Double.valueOf(location.getLat()).toString();
+
+        log.info("Endereço buscado com sucesso.");
 
         return Cordenadas.builder().longitude(longitude).latitude(latitude).build();
     }

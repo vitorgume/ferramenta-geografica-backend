@@ -15,7 +15,7 @@ public class EmpresaMapper {
                 .email(entity.getEmail())
                 .endereco(entity.getEndereco())
                 .segmento(entity.getSegmento())
-                .visatado(entity.getVisatado())
+                .visitado(entity.getVisitado())
                 .build();
     }
 
@@ -29,7 +29,7 @@ public class EmpresaMapper {
                 .email(domain.getEmail())
                 .endereco(domain.getEndereco())
                 .segmento(domain.getSegmento())
-                .visatado(domain.getVisatado())
+                .visitado(domain.getVisitado())
                 .build();
     }
 }
