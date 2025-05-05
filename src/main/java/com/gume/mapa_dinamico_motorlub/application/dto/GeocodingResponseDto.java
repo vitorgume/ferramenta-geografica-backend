@@ -1,6 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,12 +31,23 @@ public class GeocodingResponseDto {
     public static class Geometry {
         private Location location;
 
+        @JsonProperty("location_type")
+        private String locationType;
+
         public Location getLocation() {
             return location;
         }
 
         public void setLocation(Location location) {
             this.location = location;
+        }
+
+        public String getLocationType() {
+            return locationType;
+        }
+
+        public void setLocationType(String locationType) {
+            this.locationType = locationType;
         }
     }
 

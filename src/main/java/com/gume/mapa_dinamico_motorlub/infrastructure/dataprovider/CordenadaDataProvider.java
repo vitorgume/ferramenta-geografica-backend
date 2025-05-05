@@ -8,10 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @Slf4j
@@ -34,20 +36,14 @@ public class CordenadaDataProvider implements CordenadasGateway {
 
     @Override
     public Cordenadas buscarCordenadas(Endereco endereco) {
-        log.info("Cordenadas: {}", endereco);
-        String enderecoUri = URLEncoder.encode(
-                endereco.getLogradouro() + ", " +
-                        endereco.getNumero() + ", " +
-                        endereco.getCep() + ", " +
-                        endereco.getBairro() + ", " +
-                        endereco.getMunicipio() + " - " +
-                        endereco.getUf() + ", ",
-                StandardCharsets.UTF_8
-        );
+        String enderecoFormatado = formatarEndereco(endereco);
 
+        log.info("Endereço formatado: {}", enderecoFormatado);
+
+        String enderecoUri = enderecoFormatado.replace(" ", "+");
         log.info("Endereço URI: {}", enderecoUri);
 
-        String uri = baseUrl + enderecoUri + "&key=" + apiKey;
+        String uri = baseUrl + enderecoUri + "&components=country:BR|administrative_area:PR&region=br&key=" + apiKey;
 
         GeocodingResponseDto response = webClient.get()
                 .uri(uri)
@@ -56,21 +52,48 @@ public class CordenadaDataProvider implements CordenadasGateway {
                 .block();
 
         if (!"OK".equals(response.getStatus()) || response.getResults().isEmpty()) {
-            throw new RuntimeException("Endereço não encontrado");
+            log.info("Endereço não encontrado: {}", enderecoFormatado);
+        } else {
+            Optional<GeocodingResponseDto.Result> melhorResultado = response.getResults().stream()
+                    .filter(r -> "ROOFTOP".equalsIgnoreCase(r.getGeometry().getLocationType()))
+                    .findFirst();
+
+            GeocodingResponseDto.Result resultado = melhorResultado.orElse(response.getResults().get(0));
+
+            double lat = resultado.getGeometry().getLocation().getLat();
+            double lng = resultado.getGeometry().getLocation().getLng();
+
+            log.info("Coordenadas encontradas: Latitude={}, Longitude={}", lat, lng);
+
+            return Cordenadas.builder()
+                    .latitude(String.valueOf(lat))
+                    .longitude(String.valueOf(lng))
+                    .build();
         }
 
-        GeocodingResponseDto.Location location = response.getResults()
-                .get(0)
-                .getGeometry()
-                .getLocation();
-
-        String longitude = Double.valueOf(location.getLng()).toString();
-        String latitude = Double.valueOf(location.getLat()).toString();
-
-        log.info("Endereço buscado com sucesso.");
-
-        return Cordenadas.builder().longitude(longitude).latitude(latitude).build();
+        return Cordenadas.builder().build();
     }
+
+    private String formatarEndereco(Endereco endereco) {
+        return String.format(
+                "%s, %s - %s, %s - %s, %s, Brasil",
+                formatarTexto(endereco.getLogradouro()),
+                endereco.getNumero(),
+                formatarTexto(endereco.getBairro()),
+                formatarTexto(endereco.getMunicipio()),
+                endereco.getUf().toUpperCase(),
+                endereco.getCep()
+        );
+    }
+
+    private String formatarTexto(String texto) {
+        if (texto == null || texto.isEmpty()) return "";
+        return Arrays.stream(texto.toLowerCase().split(" "))
+                .map(p -> p.isEmpty() ? "" : p.substring(0, 1).toUpperCase() + p.substring(1))
+                .collect(Collectors.joining(" "));
+    }
+
+
 
 
 

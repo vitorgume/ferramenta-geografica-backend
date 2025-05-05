@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @Builder
 @NoArgsConstructor
+@ToString
 public class Endereco {
 
     private String logradouro;
