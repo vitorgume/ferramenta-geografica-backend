@@ -1,4 +1,4 @@
-package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider;
+package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider.bd;
 
 import com.gume.mapa_dinamico_motorlub.application.gateways.EmpresaGateway;
 import com.gume.mapa_dinamico_motorlub.domain.Empresa;

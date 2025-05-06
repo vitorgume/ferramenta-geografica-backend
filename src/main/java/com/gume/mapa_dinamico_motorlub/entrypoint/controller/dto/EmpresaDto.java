@@ -20,7 +20,7 @@ public class EmpresaDto {
     private String cnpj;
     private String telefone;
     private String email;
-    private Endereco endereco;
+    private EnderecoDto endereco;
     private Segmento segmento;
     private Boolean visitado;
 }

@@ -1,6 +1,10 @@
-package com.gume.mapa_dinamico_motorlub.domain;
+package com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto;
 
-import lombok.*;
+import com.gume.mapa_dinamico_motorlub.domain.Cordenadas;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
@@ -8,10 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
-@ToString
-public class Endereco {
-
+public class EnderecoDto {
     private UUID id;
     private String logradouro;
     private String numero;

@@ -1,4 +1,4 @@
-package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider;
+package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider.api;
 
 import com.gume.mapa_dinamico_motorlub.application.dto.GeocodingResponseDto;
 import com.gume.mapa_dinamico_motorlub.application.gateways.CordenadasGateway;
@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;

@@ -18,11 +18,12 @@ public class EmpresaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id_empresa")
     private UUID id;
     private String cnpj;
 
-    @Embedded
-    private Endereco endereco;
+    @OneToOne(cascade = CascadeType.ALL)
+    private EnderecoEntity endereco;
 
     @Enumerated(EnumType.ORDINAL)
     private Segmento segmento;

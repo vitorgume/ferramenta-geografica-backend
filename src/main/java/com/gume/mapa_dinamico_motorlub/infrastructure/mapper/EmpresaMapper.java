@@ -13,7 +13,7 @@ public class EmpresaMapper {
                 .cnpj(entity.getCnpj())
                 .telefone(entity.getTelefone())
                 .email(entity.getEmail())
-                .endereco(entity.getEndereco())
+                .endereco(EnderecoMapper.paraDomain(entity.getEndereco()))
                 .segmento(entity.getSegmento())
                 .visitado(entity.getVisitado())
                 .build();
@@ -27,7 +27,7 @@ public class EmpresaMapper {
                 .cnpj(domain.getCnpj())
                 .telefone(domain.getTelefone())
                 .email(domain.getEmail())
-                .endereco(domain.getEndereco())
+                .endereco(EnderecoMapper.paraEntity(domain.getEndereco()))
                 .segmento(domain.getSegmento())
                 .visitado(domain.getVisitado())
                 .build();
