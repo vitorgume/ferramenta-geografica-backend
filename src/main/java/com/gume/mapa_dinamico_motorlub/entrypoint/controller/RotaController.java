@@ -2,11 +2,7 @@ package com.gume.mapa_dinamico_motorlub.entrypoint.controller;
 
 import com.gume.mapa_dinamico_motorlub.application.dto.DirectionsResponseDto;
 import com.gume.mapa_dinamico_motorlub.application.usecase.RotaUseCase;
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
-import com.gume.mapa_dinamico_motorlub.domain.Rota;
-import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EnderecoDto;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.RotaDto;
-import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.EnderecoMapper;
 import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.RotaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
