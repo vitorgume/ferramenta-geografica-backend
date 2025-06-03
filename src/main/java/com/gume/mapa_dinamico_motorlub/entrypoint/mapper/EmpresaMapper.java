@@ -28,7 +28,7 @@ public class EmpresaMapper {
                 .telefone(domain.getTelefone())
                 .email(domain.getEmail())
                 .endereco(EnderecoMapper.paraDto(domain.getEndereco()))
-                .segmento(domain.getSegmento())
+                .segmentoDescricao(domain.getSegmento().getDescricao())
                 .visitado(domain.getVisitado())
                 .build();
     }

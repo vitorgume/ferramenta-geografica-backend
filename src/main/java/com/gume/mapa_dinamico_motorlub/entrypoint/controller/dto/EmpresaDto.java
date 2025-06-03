@@ -23,4 +23,5 @@ public class EmpresaDto {
     private EnderecoDto endereco;
     private Segmento segmento;
     private Boolean visitado;
+    private String segmentoDescricao;
 }
