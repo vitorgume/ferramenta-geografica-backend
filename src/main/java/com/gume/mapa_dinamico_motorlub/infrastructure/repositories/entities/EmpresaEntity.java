@@ -32,4 +32,8 @@ public class EmpresaEntity {
     private String razaoSocial;
     private String telefone;
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "id_representante", nullable = false)
+    private RepresentanteEntity representante;
 }

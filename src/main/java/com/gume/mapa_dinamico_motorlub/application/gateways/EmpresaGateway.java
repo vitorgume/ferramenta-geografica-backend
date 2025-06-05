@@ -14,4 +14,6 @@ public interface EmpresaGateway {
     Empresa salvar(Empresa empresa);
 
     Optional<Empresa> consultarPorId(UUID id);
+
+    List<Empresa> listarPorRepresentante(Long id);
 }

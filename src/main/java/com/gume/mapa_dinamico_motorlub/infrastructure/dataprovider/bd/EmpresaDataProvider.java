@@ -25,6 +25,7 @@ public class EmpresaDataProvider implements EmpresaGateway {
     private final String MENSAGEM_ERRO_SALVAR_EMPRESAS = "Erro ao salvar empresas.";
     private final String MENSAGEM_ERRO_SALVAR = "Erro ao salvar empresa.";
     private final String MENSAGEM_ERRO_CONSULTAR_PELO_ID = "Erro ao consultar empresa pelo id.";
+    private final String MENSAGEM_ERRO_LISTAR_POR_REPRESENTANTE = "Erro ao listar empresas pelo representante.";
 
     @Override
     public List<Empresa> listar() {
@@ -80,5 +81,19 @@ public class EmpresaDataProvider implements EmpresaGateway {
         }
 
         return empresaEntity.map(EmpresaMapper::paraDomain);
+    }
+
+    @Override
+    public List<Empresa> listarPorRepresentante(Long id) {
+        List<EmpresaEntity> empresaEntities;
+
+        try {
+            empresaEntities = repository.listarPorRepresentante(id);
+        } catch (Exception ex) {
+            log.error(MENSAGEM_ERRO_LISTAR_POR_REPRESENTANTE, ex);
+            throw new DataProviderException(MENSAGEM_ERRO_LISTAR_POR_REPRESENTANTE, ex.getCause());
+        }
+
+        return empresaEntities.stream().map(EmpresaMapper::paraDomain).toList();
     }
 }

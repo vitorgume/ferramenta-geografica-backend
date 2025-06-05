@@ -20,4 +20,5 @@ public class Empresa {
     private Endereco endereco;
     private Segmento segmento;
     private Boolean visitado;
+    private Representante representante;
 }

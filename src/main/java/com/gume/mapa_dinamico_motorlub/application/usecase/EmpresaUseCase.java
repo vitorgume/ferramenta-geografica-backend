@@ -133,4 +133,8 @@ public class EmpresaUseCase {
 
         return empresaOptional.get();
     }
+
+    public List<Empresa> listarPorRepresentante(Long id) {
+        return gateway.listarPorRepresentante(id);
+    }
 }
