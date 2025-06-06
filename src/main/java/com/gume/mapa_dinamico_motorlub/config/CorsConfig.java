@@ -13,7 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // aplica a todos os endpoints
-                        .allowedOrigins("*") // ou "*" se for pra teste local sem restrição
+                        .allowedOrigins("http://localhost:5173") // ou "*" se for pra teste local sem restrição
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
             }

@@ -10,7 +10,6 @@ public class RepresentanteMapper {
                 .id(domain.getId())
                 .email(domain.getEmail())
                 .nome(domain.getNome())
-                .senha(domain.getSenha())
                 .regiao(domain.getRegiao())
                 .build();
     }
@@ -21,6 +20,7 @@ public class RepresentanteMapper {
                 .email(dto.getEmail())
                 .nome(dto.getNome())
                 .regiao(dto.getRegiao())
+                .senha(dto.getSenha())
                 .build();
     }
 }

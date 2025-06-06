@@ -37,6 +37,7 @@ public class RepresentanteUseCase {
             throw new RepresentanteJaExistenteException();
         });
 
-        return gateway.salvar(representante);
+        representante = gateway.salvar(representante);
+        return representante;
     }
 }

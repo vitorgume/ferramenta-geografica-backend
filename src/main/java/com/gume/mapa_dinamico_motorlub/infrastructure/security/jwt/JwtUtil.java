@@ -16,7 +16,7 @@ public class JwtUtil {
     @Value("${secret.key}")
     private final String secretKey;
 
-    private final long EXPIRATION_TIME = 1000 * 60 * 60; 
+    private final long EXPIRATION_TIME = 1000 * 60 * 60;
 
     public JwtUtil(
             @Value("${secret.key}") String secretKey

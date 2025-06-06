@@ -28,7 +28,7 @@ public class EmpresaUseCase {
     private final EmpresaGateway gateway;
     private final CordenadasUseCase cordenadasUseCase;
 
-    public List<EmpresaDto> cadastrarEmpresas(MultipartFile arquivo) {
+    public List<Empresa> cadastrarEmpresas(MultipartFile arquivo) {
         log.info("Cadastrando empresas...");
         List<Empresa> empresas = new ArrayList<>();
         if (arquivo.getOriginalFilename().endsWith(".csv")) {
@@ -103,15 +103,15 @@ public class EmpresaUseCase {
 
         log.info("Empresas cadastradas com sucesso. Empresas {}", empresas);
 
-        return empresas.stream().map(EmpresaMapper::paraDto).toList();
+        return empresas;
     }
 
-    public List<EmpresaDto> listar() {
+    public List<Empresa> listar() {
         List<Empresa> empresaList = gateway.listar();
-        return empresaList.stream().map(EmpresaMapper::paraDto).toList();
+        return empresaList;
     }
 
-    public EmpresaDto alterarStatus(UUID id) {
+    public Empresa alterarStatus(UUID id) {
         Empresa empresa = this.consultarPorId(id);
         log.info("Marcando como visatada a empresa... Cnpj: {}", empresa.getCnpj());
 
@@ -121,7 +121,7 @@ public class EmpresaUseCase {
 
         log.info("Empresa marcada como visitada com sucesso. Empresa: {}", empresa);
 
-        return EmpresaMapper.paraDto(empresa);
+        return empresa;
     }
 
     private Empresa consultarPorId(UUID id) {

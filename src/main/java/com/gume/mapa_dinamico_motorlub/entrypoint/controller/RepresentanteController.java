@@ -18,7 +18,7 @@ public class RepresentanteController {
 
     private final RepresentanteUseCase useCase;
 
-    @PostMapping("cadastrar")
+    @PostMapping("/cadastrar")
     public ResponseEntity<RepresentanteDto> cadastrar(@RequestBody RepresentanteDto novoRepresetante) {
         RepresentanteDto response = RepresentanteMapper.paraDto(useCase.cadastrar(RepresentanteMapper.paraDomain(novoRepresetante)));
         return ResponseEntity.created(

@@ -18,6 +18,7 @@ public class LoginMapper {
                 .email(domain.getEmail())
                 .token(domain.getToken())
                 .senha(domain.getSenha())
+                .idRepresentante(domain.getIdRepresentante())
                 .build();
     }
 }

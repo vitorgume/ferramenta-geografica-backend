@@ -20,6 +20,7 @@ public class RepresentanteDataProvider implements RepresentanteGateway {
     private final RepresentanteRepository repository;
 
     private final String MENSAGEM_ERRO_CONSULTAR_POR_EMAIL = "Erro ao consultar representante pelo seu email.";
+    private final String MENSAGEM_ERRO_SALVAR = "Erro ao salvar representante.";
 
     @Override
     public Optional<Representante> consultarPorEmail(String email) {
@@ -37,6 +38,15 @@ public class RepresentanteDataProvider implements RepresentanteGateway {
 
     @Override
     public Representante salvar(Representante representante) {
-        return null;
+        RepresentanteEntity representanteEntity;
+
+        try {
+            representanteEntity = repository.save(RepresentanteMapper.paraEntity(representante));
+        } catch (Exception ex) {
+            log.error(MENSAGEM_ERRO_SALVAR, ex);
+            throw new DataProviderException(MENSAGEM_ERRO_SALVAR, ex.getCause());
+        }
+
+        return RepresentanteMapper.paraDomain(representanteEntity);
     }
 }
