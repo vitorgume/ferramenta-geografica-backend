@@ -1,17 +1,20 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto;
 
+import com.gume.mapa_dinamico_motorlub.domain.Regiao;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
-@Builder
 @Getter
 @Setter
-public class LoginDto {
+@Builder
+public class RepresentanteDto {
+
+    private Long id;
+    private String nome;
+    private Regiao regiao;
     private String email;
     private String senha;
-    private String token;
-    private Long idRepresentante;
 }

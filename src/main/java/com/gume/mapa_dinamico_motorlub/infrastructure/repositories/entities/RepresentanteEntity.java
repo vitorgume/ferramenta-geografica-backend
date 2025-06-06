@@ -20,5 +20,6 @@ public class RepresentanteEntity {
 
     @Enumerated(EnumType.ORDINAL)
     private Regiao regiao;
-    private String cpf;
+    private String email;
+    private String senha;
 }

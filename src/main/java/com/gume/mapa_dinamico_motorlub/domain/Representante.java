@@ -14,5 +14,6 @@ public class Representante {
     private Long id;
     private String nome;
     private Regiao regiao;
-    private String cpf;
+    private String email;
+    private String senha;
 }

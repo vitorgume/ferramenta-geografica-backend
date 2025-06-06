@@ -7,18 +7,20 @@ public class RepresentanteMapper {
     public static Representante paraDomain(RepresentanteEntity entity) {
         return Representante.builder()
                 .id(entity.getId())
-                .cpf(entity.getCpf())
+                .email(entity.getEmail())
                 .nome(entity.getNome())
                 .regiao(entity.getRegiao())
+                .senha(entity.getSenha())
                 .build();
     }
 
     public static RepresentanteEntity paraEntity(Representante domain) {
         return RepresentanteEntity.builder()
                 .id(domain.getId())
-                .cpf(domain.getCpf())
+                .email(domain.getEmail())
                 .nome(domain.getNome())
                 .regiao(domain.getRegiao())
+                .senha(domain.getSenha())
                 .build();
     }
 }

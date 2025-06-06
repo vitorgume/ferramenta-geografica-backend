@@ -13,6 +13,7 @@ public class MapaDinamicoMotorlubApplication {
 		System.setProperty("USER_BD", dotenv.get("USER_BD"));
 		System.setProperty("PASSWORD_BD", dotenv.get("PASSWORD_BD"));
 		System.setProperty("GOOGLE_API_KEY", dotenv.get("GOOGLE_API_KEY"));
+		System.setProperty("SECRET_KEY", dotenv.get("SECRET_KEY"));
 
 		SpringApplication.run(MapaDinamicoMotorlubApplication.class, args);
 	}

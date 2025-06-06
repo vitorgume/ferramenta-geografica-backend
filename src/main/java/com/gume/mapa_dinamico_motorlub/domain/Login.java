@@ -10,7 +10,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Login {
-    private String cpf;
+    private String email;
     private String senha;
     private String token;
+    private Long idRepresentante;
 }

@@ -7,15 +7,15 @@ public class LoginMapper {
 
     public static Login paraDomain(LoginDto dto) {
         return Login.builder()
-                .cpf(dto.getCpf())
+                .email(dto.getEmail())
                 .token(dto.getToken())
                 .senha(dto.getSenha())
                 .build();
     }
 
-    public static LoginDto paraDto(LoginDto domain) {
+    public static LoginDto paraDto(Login domain) {
         return LoginDto.builder()
-                .cpf(domain.getCpf())
+                .email(domain.getEmail())
                 .token(domain.getToken())
                 .senha(domain.getSenha())
                 .build();
