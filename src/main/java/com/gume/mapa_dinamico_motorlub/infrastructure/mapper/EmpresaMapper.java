@@ -18,6 +18,7 @@ public class EmpresaMapper {
                 .segmento(entity.getSegmento())
                 .visitado(entity.getVisitado())
                 .representante(RepresentanteMapper.paraDomain(entity.getRepresentante()))
+                .comentario(entity.getComentario())
                 .build();
     }
 
@@ -33,6 +34,7 @@ public class EmpresaMapper {
                 .segmento(domain.getSegmento())
                 .visitado(domain.getVisitado())
                 .representante(RepresentanteMapper.paraEntity(domain.getRepresentante()))
+                .comentario(domain.getComentario())
                 .build();
     }
 }

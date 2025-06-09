@@ -29,7 +29,7 @@ public class EmpresaUseCase {
     private final CordenadasUseCase cordenadasUseCase;
 
     public List<Empresa> cadastrarEmpresas(MultipartFile arquivo) {
-        log.info("Cadastrando empresas...");
+        log.info("Cadastrando empresas. Arquivo: {}", arquivo);
         List<Empresa> empresas = new ArrayList<>();
         if (arquivo.getOriginalFilename().endsWith(".csv")) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(arquivo.getInputStream()))) {
@@ -107,7 +107,9 @@ public class EmpresaUseCase {
     }
 
     public List<Empresa> listar() {
+        log.info("Listando empresas.");
         List<Empresa> empresaList = gateway.listar();
+        log.info("Empresas listadas com sucesso. Empresas: {}", empresaList);
         return empresaList;
     }
 
@@ -125,16 +127,34 @@ public class EmpresaUseCase {
     }
 
     private Empresa consultarPorId(UUID id) {
+        log.info("Consultando empresa pelo seu id. Id: {}", id);
         Optional<Empresa> empresaOptional = gateway.consultarPorId(id);
 
         if(empresaOptional.isEmpty()) {
             throw new RuntimeException("Empresa não encontrada com id: " + id);
         }
 
+        log.info("Empresa consultada com sucesso. Empresa: {}", empresaOptional.get());
+
         return empresaOptional.get();
     }
 
     public List<Empresa> listarPorRepresentante(Long id) {
-        return gateway.listarPorRepresentante(id);
+        log.info("Listando empresas pelo representante. Id representante: {}", id);
+        List<Empresa> empresas = gateway.listarPorRepresentante(id);
+        log.info("Empresas listadas com sucesso. Empresas: {}", empresas);
+        return empresas;
+    }
+
+    public Empresa adicionarComentario(UUID idEmpresa, String comentario) {
+        log.info("Adicionando novo comentário a empresa. Id da empresa: {}, Comentário: {}", idEmpresa, comentario);
+
+        Empresa empresa = consultarPorId(idEmpresa);
+        empresa.setComentario(comentario);
+        empresa = gateway.salvar(empresa);
+
+        log.info("Comentário adicionado a empresa com sucesso. Empresa salva: {}", empresa);
+
+        return empresa;
     }
 }

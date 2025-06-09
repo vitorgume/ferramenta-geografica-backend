@@ -24,4 +24,5 @@ public class EmpresaDto {
     private Segmento segmento;
     private Boolean visitado;
     private String segmentoDescricao;
+    private String comentario;
 }

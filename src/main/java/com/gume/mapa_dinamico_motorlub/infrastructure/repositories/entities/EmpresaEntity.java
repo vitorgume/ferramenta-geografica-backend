@@ -36,4 +36,5 @@ public class EmpresaEntity {
     @ManyToOne
     @JoinColumn(name = "id_representante", nullable = false)
     private RepresentanteEntity representante;
+    private String comentario;
 }

@@ -21,4 +21,5 @@ public class Empresa {
     private Segmento segmento;
     private Boolean visitado;
     private Representante representante;
+    private String comentario;
 }

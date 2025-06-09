@@ -1,6 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.controller;
 
 import com.gume.mapa_dinamico_motorlub.application.usecase.EmpresaUseCase;
+import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.ComentarioDto;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EmpresaDto;
 import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.EmpresaMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class EmpresaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<EmpresaDto>> listarPorRepresentante(@PathVariable Long idRepresentante) {
+    public ResponseEntity<List<EmpresaDto>> listarPorRepresentante(@PathVariable("id") Long idRepresentante) {
         List<EmpresaDto> resultado = useCase.listarPorRepresentante(idRepresentante).stream().map(EmpresaMapper::paraDto).toList();
         return ResponseEntity.ok(resultado);
     }
@@ -39,6 +40,12 @@ public class EmpresaController {
     @PutMapping("/{id}")
     public ResponseEntity<EmpresaDto> alteraStatus(@PathVariable UUID id) {
         EmpresaDto resultado = EmpresaMapper.paraDto(useCase.alterarStatus(id));
+        return ResponseEntity.ok(resultado);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<EmpresaDto> adicionarComentario(@PathVariable("id") UUID idEmpresa, @RequestBody ComentarioDto comentario) {
+        EmpresaDto resultado = EmpresaMapper.paraDto(useCase.adicionarComentario(idEmpresa, comentario.getComentario()));
         return ResponseEntity.ok(resultado);
     }
 }

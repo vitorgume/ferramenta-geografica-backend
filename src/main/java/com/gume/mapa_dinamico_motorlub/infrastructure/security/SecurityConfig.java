@@ -1,5 +1,6 @@
-package com.gume.mapa_dinamico_motorlub.infrastructure.security.jwt;
+package com.gume.mapa_dinamico_motorlub.infrastructure.security;
 
+import com.gume.mapa_dinamico_motorlub.infrastructure.security.jwt.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

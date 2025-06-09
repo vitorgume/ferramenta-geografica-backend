@@ -16,6 +16,7 @@ public class EmpresaMapper {
                 .endereco(EnderecoMapper.paraDomain(dto.getEndereco()))
                 .segmento(dto.getSegmento())
                 .visitado(dto.getVisitado())
+                .comentario(dto.getComentario())
                 .build();
     }
 
@@ -30,6 +31,7 @@ public class EmpresaMapper {
                 .endereco(EnderecoMapper.paraDto(domain.getEndereco()))
                 .segmentoDescricao(domain.getSegmento().getDescricao())
                 .visitado(domain.getVisitado())
+                .comentario(domain.getComentario())
                 .build();
     }
 }

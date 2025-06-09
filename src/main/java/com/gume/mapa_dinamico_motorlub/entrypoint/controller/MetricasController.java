@@ -18,7 +18,7 @@ public class MetricasController {
     private final MetricasUseCase metricasUseCase;
 
     @GetMapping("/visitados/{id}")
-    public ResponseEntity<MetricaDto> quantidadeVisitados(@PathVariable Long id) {
+    public ResponseEntity<MetricaDto> quantidadeVisitados(@PathVariable("id") Long id) {
         MetricaDto resultado = MetricaMapper.paraDto(metricasUseCase.quantidadeVisitados(id));
         return ResponseEntity.ok(resultado);
     }
