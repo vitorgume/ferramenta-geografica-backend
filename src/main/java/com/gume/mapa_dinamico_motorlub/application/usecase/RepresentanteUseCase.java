@@ -4,11 +4,13 @@ import com.gume.mapa_dinamico_motorlub.application.exceptions.RepresentanteJaExi
 import com.gume.mapa_dinamico_motorlub.application.exceptions.RepresentanteNaoEncontradoException;
 import com.gume.mapa_dinamico_motorlub.application.gateways.RepresentanteGateway;
 import com.gume.mapa_dinamico_motorlub.domain.Representante;
+import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.RepresentanteDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -50,5 +52,34 @@ public class RepresentanteUseCase {
         log.info("Representante cadastrado com sucesso. Representante: {}", representante);
 
         return representante;
+    }
+
+    public Representante alterarSenha(Long idRepresentante, RepresentanteDto novoRepresentante) {
+
+        log.info("Alterando senha do representante. Id do representante: {}, Representante: {}", idRepresentante, novoRepresentante);
+
+        Representante representante = this.consultarPorId(idRepresentante);
+        String novaSenha = criptografiaUseCase.criptografar(novoRepresentante.getSenha());
+        representante.setSenha(novaSenha);
+        representante = gateway.salvar(representante);
+
+        log.info("Senha alterada com sucesso. Representante: {}", representante);
+
+        return representante;
+
+    }
+
+    public Representante consultarPorId(Long id) {
+        log.info("Consultando representante pelo seu id. Id representante: {}", id);
+
+        Optional<Representante> representanteOptional = gateway.consultarPorId(id);
+
+        if(representanteOptional.isEmpty()) {
+            throw new RepresentanteNaoEncontradoException();
+        }
+
+        log.info("Representante consultado com sucesso. Representante: {}", representanteOptional.get());
+
+        return representanteOptional.get();
     }
 }

@@ -5,11 +5,10 @@ import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.RepresentanteDt
 import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.RepresentanteMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("representantes")
@@ -28,5 +27,11 @@ public class RepresentanteController {
                         .buildAndExpand(response.getId())
                         .toUri())
                 .body(response);
+    }
+
+    @PatchMapping("/senha/{id}")
+    public ResponseEntity<RepresentanteDto> alterarSenha(@PathVariable("id") Long idRepresentante, @RequestBody RepresentanteDto representanteDto) {
+        RepresentanteDto response =  RepresentanteMapper.paraDto(useCase.alterarSenha(idRepresentante, representanteDto));
+        return ResponseEntity.ok(response);
     }
 }
