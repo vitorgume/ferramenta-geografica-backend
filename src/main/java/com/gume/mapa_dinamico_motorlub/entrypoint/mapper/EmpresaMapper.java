@@ -17,6 +17,7 @@ public class EmpresaMapper {
                 .segmento(dto.getSegmento())
                 .visitado(dto.getVisitado())
                 .comentario(dto.getComentario())
+                .nivelIcp(dto.getNivelIcp())
                 .build();
     }
 
@@ -32,6 +33,7 @@ public class EmpresaMapper {
                 .segmentoDescricao(domain.getSegmento().getDescricao())
                 .visitado(domain.getVisitado())
                 .comentario(domain.getComentario())
+                .descricaoNivelIcp(domain.getNivelIcp().getDescricao())
                 .build();
     }
 }

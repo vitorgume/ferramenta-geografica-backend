@@ -1,6 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.repositories.entities;
 
 import com.gume.mapa_dinamico_motorlub.domain.Endereco;
+import com.gume.mapa_dinamico_motorlub.domain.NivelIcp;
 import com.gume.mapa_dinamico_motorlub.domain.Segmento;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,4 +38,7 @@ public class EmpresaEntity {
     @JoinColumn(name = "id_representante", nullable = false)
     private RepresentanteEntity representante;
     private String comentario;
+
+    @Enumerated(EnumType.ORDINAL)
+    private NivelIcp nivelIcp;
 }

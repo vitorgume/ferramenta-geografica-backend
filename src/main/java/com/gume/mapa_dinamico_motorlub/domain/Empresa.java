@@ -22,4 +22,5 @@ public class Empresa {
     private Boolean visitado;
     private Representante representante;
     private String comentario;
+    private NivelIcp nivelIcp;
 }
