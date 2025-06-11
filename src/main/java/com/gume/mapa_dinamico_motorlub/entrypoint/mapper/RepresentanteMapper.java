@@ -8,7 +8,7 @@ public class RepresentanteMapper {
     public static RepresentanteDto paraDto(Representante domain) {
         return RepresentanteDto.builder()
                 .id(domain.getId())
-                .email(domain.getEmail())
+                .telefone(domain.getTelefone())
                 .nome(domain.getNome())
                 .regiao(domain.getRegiao())
                 .build();
@@ -17,7 +17,7 @@ public class RepresentanteMapper {
     public static Representante paraDomain(RepresentanteDto dto) {
         return Representante.builder()
                 .id(dto.getId())
-                .email(dto.getEmail())
+                .telefone(dto.getTelefone())
                 .nome(dto.getNome())
                 .regiao(dto.getRegiao())
                 .senha(dto.getSenha())

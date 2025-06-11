@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoginDto {
-    private String email;
+    private String telefone;
     private String senha;
     private String token;
     private Long idRepresentante;

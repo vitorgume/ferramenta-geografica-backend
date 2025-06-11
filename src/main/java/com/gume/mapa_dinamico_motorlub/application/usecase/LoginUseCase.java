@@ -19,9 +19,9 @@ public class LoginUseCase {
 
     public Login autenticar(Login login) {
         log.info("Autenticando representante. Dados login: {}", login);
-        Representante representante = representanteUseCase.consultarPorEmail(login.getEmail());
-        validaCredencias(representante, login.getEmail(), login.getSenha());
-        String token = gateway.generateToken(login.getEmail());
+        Representante representante = representanteUseCase.consultarPorTelefone(login.getTelefone());
+        validaCredencias(representante, login.getTelefone(), login.getSenha());
+        String token = gateway.generateToken(login.getTelefone());
 
         log.info("Representante autenticado com sucesso. Representante: {}", representante);
 
@@ -33,7 +33,7 @@ public class LoginUseCase {
 
 
     private void validaCredencias(Representante representante, String email, String senha) {
-        if(!representante.getEmail().equals(email) || !criptografiaUseCase.validaSenha(senha, representante.getSenha())) {
+        if(!representante.getTelefone().equals(email) || !criptografiaUseCase.validaSenha(senha, representante.getSenha())) {
             throw new CredenciasIncorretasException();
         }
     }

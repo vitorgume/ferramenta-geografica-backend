@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -21,16 +20,16 @@ public class RepresentanteUseCase {
     private final CriptografiaUseCase criptografiaUseCase;
 
 
-    public Representante consultarPorEmail(String email) {
-        log.info("Consultando representante pelo seu email. Email: {}", email);
+    public Representante consultarPorTelefone(String telefone) {
+        log.info("Consultando representante pelo seu telefone. Telefone: {}", telefone);
 
-        Optional<Representante> representante = gateway.consultarPorEmail(email);
+        Optional<Representante> representante = gateway.consultarPorTelefone(telefone);
 
         if(representante.isEmpty()) {
             throw new RepresentanteNaoEncontradoException();
         }
 
-        log.info("Representante consultado pelo seu email com sucesso. Email: {}", email);
+        log.info("Representante consultado pelo seu telefone com sucesso. Email: {}", telefone);
 
         return representante.get();
     }
@@ -41,7 +40,7 @@ public class RepresentanteUseCase {
         String senhaCriptografada = criptografiaUseCase.criptografar(representante.getSenha());
         representante.setSenha(senhaCriptografada);
 
-        Optional<Representante> representanteExistente = gateway.consultarPorEmail(representante.getEmail());
+        Optional<Representante> representanteExistente = gateway.consultarPorTelefone(representante.getTelefone());
 
         representanteExistente.ifPresent(rep -> {
             throw new RepresentanteJaExistenteException();

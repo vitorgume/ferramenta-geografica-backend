@@ -7,7 +7,7 @@ public class RepresentanteMapper {
     public static Representante paraDomain(RepresentanteEntity entity) {
         return Representante.builder()
                 .id(entity.getId())
-                .email(entity.getEmail())
+                .telefone(entity.getTelefone())
                 .nome(entity.getNome())
                 .regiao(entity.getRegiao())
                 .senha(entity.getSenha())
@@ -17,7 +17,7 @@ public class RepresentanteMapper {
     public static RepresentanteEntity paraEntity(Representante domain) {
         return RepresentanteEntity.builder()
                 .id(domain.getId())
-                .email(domain.getEmail())
+                .telefone(domain.getTelefone())
                 .nome(domain.getNome())
                 .regiao(domain.getRegiao())
                 .senha(domain.getSenha())

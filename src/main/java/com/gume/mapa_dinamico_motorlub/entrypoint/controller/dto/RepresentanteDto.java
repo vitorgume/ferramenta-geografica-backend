@@ -15,6 +15,6 @@ public class RepresentanteDto {
     private Long id;
     private String nome;
     private Regiao regiao;
-    private String email;
+    private String telefone;
     private String senha;
 }

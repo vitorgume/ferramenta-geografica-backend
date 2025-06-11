@@ -7,7 +7,7 @@ public class LoginMapper {
 
     public static Login paraDomain(LoginDto dto) {
         return Login.builder()
-                .email(dto.getEmail())
+                .telefone(dto.getTelefone())
                 .token(dto.getToken())
                 .senha(dto.getSenha())
                 .build();
@@ -15,7 +15,7 @@ public class LoginMapper {
 
     public static LoginDto paraDto(Login domain) {
         return LoginDto.builder()
-                .email(domain.getEmail())
+                .telefone(domain.getTelefone())
                 .token(domain.getToken())
                 .senha(domain.getSenha())
                 .idRepresentante(domain.getIdRepresentante())
