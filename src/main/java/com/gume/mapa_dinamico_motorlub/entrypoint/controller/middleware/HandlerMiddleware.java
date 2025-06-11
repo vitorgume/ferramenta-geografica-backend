@@ -1,4 +1,4 @@
-package com.gume.mapa_dinamico_motorlub.entrypoint.middleware;
+package com.gume.mapa_dinamico_motorlub.entrypoint.controller.middleware;
 
 import com.gume.mapa_dinamico_motorlub.application.exceptions.CredenciasIncorretasException;
 import com.gume.mapa_dinamico_motorlub.application.exceptions.RepresentanteJaExistenteException;
@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class HandlerMiddleware {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<MensagemErroException> exceptionInesperada(Exception exception) {
+        MensagemErroException mensagem = new MensagemErroException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        return ResponseEntity.status(mensagem.status()).body(mensagem);
+    }
 
     @ExceptionHandler(CredenciasIncorretasException.class)
     public ResponseEntity<MensagemErroException> credenciasErradas(CredenciasIncorretasException exception) {
