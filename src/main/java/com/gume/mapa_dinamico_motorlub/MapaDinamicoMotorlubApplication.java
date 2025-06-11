@@ -8,12 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MapaDinamicoMotorlubApplication {
 
 	public static void main(String[] args) {
-		Dotenv dotenv = Dotenv.load();
-		System.setProperty("URL_BD", dotenv.get("URL_BD"));
-		System.setProperty("USER_BD", dotenv.get("USER_BD"));
-		System.setProperty("PASSWORD_BD", dotenv.get("PASSWORD_BD"));
-		System.setProperty("GOOGLE_API_KEY", dotenv.get("GOOGLE_API_KEY"));
-		System.setProperty("SECRET_KEY", dotenv.get("SECRET_KEY"));
+		System.setProperty("URL_BD", System.getenv("URL_BD"));
+		System.setProperty("USER_BD", System.getenv("USER_BD"));
+		System.setProperty("PASSWORD_BD", System.getenv("PASSWORD_BD"));
+		System.setProperty("GOOGLE_API_KEY", System.getenv("GOOGLE_API_KEY"));
+		System.setProperty("SECRET_KEY", System.getenv("SECRET_KEY"));
 
 		SpringApplication.run(MapaDinamicoMotorlubApplication.class, args);
 	}
