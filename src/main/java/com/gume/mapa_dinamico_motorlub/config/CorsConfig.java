@@ -12,8 +12,8 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // aplica a todos os endpoints
-                        .allowedOrigins("http://localhost:5173") // ou "*" se for pra teste local sem restrição
+                registry.addMapping("/**") 
+                        .allowedOrigins("https://ferramenta-geografica-frontend.onrender.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                         .allowedHeaders("*");
             }
