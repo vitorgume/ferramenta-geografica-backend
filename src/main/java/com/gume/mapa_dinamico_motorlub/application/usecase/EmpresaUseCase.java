@@ -1,10 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase;
 
 import com.gume.mapa_dinamico_motorlub.application.gateways.EmpresaGateway;
-import com.gume.mapa_dinamico_motorlub.domain.Cordenadas;
-import com.gume.mapa_dinamico_motorlub.domain.Empresa;
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
-import com.gume.mapa_dinamico_motorlub.domain.Segmento;
+import com.gume.mapa_dinamico_motorlub.domain.*;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EmpresaDto;
 import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.EmpresaMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,10 +24,14 @@ public class EmpresaUseCase {
 
     private final EmpresaGateway gateway;
     private final CordenadasUseCase cordenadasUseCase;
+    private final RepresentanteUseCase representanteUseCase;
 
     public List<Empresa> cadastrarEmpresas(MultipartFile arquivo) {
         log.info("Cadastrando empresas. Arquivo: {}", arquivo);
         List<Empresa> empresas = new ArrayList<>();
+
+        Representante representantePadrao = representanteUseCase.consultarPorId(13L);
+
         if (arquivo.getOriginalFilename().endsWith(".csv")) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(arquivo.getInputStream()))) {
                 String linha;
@@ -85,6 +86,9 @@ public class EmpresaUseCase {
                             .endereco(endereco)
                             .segmento(Segmento.OFICINA_MECANICA)
                             .visitado(false)
+                            .representante(representantePadrao)
+                            .comentario("")
+                            .nivelIcp(NivelIcp.A)
                             .build();
 
                     empresas.add(empresa);
