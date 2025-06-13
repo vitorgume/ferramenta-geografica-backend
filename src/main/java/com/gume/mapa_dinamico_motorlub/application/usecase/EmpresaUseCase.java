@@ -1,6 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase;
 
 import com.gume.mapa_dinamico_motorlub.application.gateways.EmpresaGateway;
+import com.gume.mapa_dinamico_motorlub.application.usecase.mapper.EnumMapper;
 import com.gume.mapa_dinamico_motorlub.domain.*;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EmpresaDto;
 import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.EmpresaMapper;
@@ -30,8 +31,6 @@ public class EmpresaUseCase {
         log.info("Cadastrando empresas. Arquivo: {}", arquivo);
         List<Empresa> empresas = new ArrayList<>();
 
-        Representante representantePadrao = representanteUseCase.consultarPorId(13L);
-
         if (arquivo.getOriginalFilename().endsWith(".csv")) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(arquivo.getInputStream()))) {
                 String linha;
@@ -52,17 +51,22 @@ public class EmpresaUseCase {
                     }
 
                     String cnpj = colunas[0];
-                    String razaoSocial = colunas[3];
-                    String nomeFantasia = colunas[7];
-                    String logradouro = colunas[11];
-                    String numero = colunas[12];
-                    String complemento = colunas[13];
-                    String cep = colunas[14];
-                    String bairro = colunas[15];
-                    String municipio = colunas[16];
-                    String uf = colunas[17];
-                    String telefones = colunas[19];
-                    String email = colunas[20];
+                    String razaoSocial = colunas[1];
+                    String nomeFantasia = colunas[2];
+                    String logradouro = colunas[3];
+                    String numero = colunas[4];
+                    String complemento = colunas[5];
+                    String cep = colunas[6];
+                    String bairro = colunas[7];
+                    String municipio = colunas[8];
+                    String uf = colunas[9];
+                    String telefones = colunas[10];
+                    String email = colunas[11];
+                    String segmento = colunas[12];
+                    String nivelIcp = colunas[13];
+                    String representante = colunas[14];
+
+                    Representante representanteEmpresa = representanteUseCase.consultarPorId(Long.valueOf(representante));
 
                     Endereco endereco = Endereco.builder()
                             .logradouro(logradouro)
@@ -84,11 +88,11 @@ public class EmpresaUseCase {
                             .telefone(telefones)
                             .email(email)
                             .endereco(endereco)
-                            .segmento(Segmento.OFICINA_MECANICA)
+                            .segmento(EnumMapper.mapperSegmento(segmento))
                             .visitado(false)
-                            .representante(representantePadrao)
+                            .representante(representanteEmpresa)
                             .comentario("")
-                            .nivelIcp(NivelIcp.A)
+                            .nivelIcp(EnumMapper.mapperNivelIcp(nivelIcp))
                             .build();
 
                     empresas.add(empresa);
