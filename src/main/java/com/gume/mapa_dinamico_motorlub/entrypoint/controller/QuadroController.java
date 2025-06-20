@@ -32,13 +32,13 @@ public class QuadroController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<QuadroDto>> listarPorRepresentante(@PathVariable("id") Long idRepresentante) {
-        List<QuadroDto> response = quadroUseCase.listarPorRepresentante(idRepresentante).stream().map(RepresentanteMapper::paraDto).toList();
+        List<QuadroDto> response = quadroUseCase.listarPorRepresentante(idRepresentante).stream().map(QuadroMapper::paraDto).toList();
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<QuadroDto> alterar(@PathVariable("id") UUID id, @RequestBody QuadroDto novosDados) {
-        QuadroDto response = QuadroMapper.paraDto(quadroUseCase.alterar(id, QuadroMapper.paraDomain(novosDados)));
+        QuadroDto response = QuadroMapper.paraDto(quadroUseCase.alterar(id, novosDados.getTitulo()));
         return ResponseEntity.ok(response);
     }
 

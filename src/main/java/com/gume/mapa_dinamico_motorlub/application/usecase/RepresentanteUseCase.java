@@ -3,6 +3,7 @@ package com.gume.mapa_dinamico_motorlub.application.usecase;
 import com.gume.mapa_dinamico_motorlub.application.exceptions.RepresentanteJaExistenteException;
 import com.gume.mapa_dinamico_motorlub.application.exceptions.RepresentanteNaoEncontradoException;
 import com.gume.mapa_dinamico_motorlub.application.gateways.RepresentanteGateway;
+import com.gume.mapa_dinamico_motorlub.domain.Quadro;
 import com.gume.mapa_dinamico_motorlub.domain.Representante;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.RepresentanteDto;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class RepresentanteUseCase {
 
     private final RepresentanteGateway gateway;
     private final CriptografiaUseCase criptografiaUseCase;
+    private final QuadroPadraoUseCase quadroPadraoUseCase;
 
 
     public Representante consultarPorEmail(String email) {
@@ -48,6 +50,8 @@ public class RepresentanteUseCase {
         });
 
         representante = gateway.salvar(representante);
+
+        quadroPadraoUseCase.cadastrarPadrao(representante);
 
         log.info("Representante cadastrado com sucesso. Representante: {}", representante);
 

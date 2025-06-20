@@ -1,5 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase;
 
+import com.gume.mapa_dinamico_motorlub.application.exceptions.QuadroPadraoNaoEncontradoException;
 import com.gume.mapa_dinamico_motorlub.application.gateways.EmpresaGateway;
 import com.gume.mapa_dinamico_motorlub.application.usecase.mapper.EnumMapper;
 import com.gume.mapa_dinamico_motorlub.domain.*;
@@ -27,6 +28,7 @@ public class EmpresaUseCase {
     private final EmpresaGateway gateway;
     private final CordenadasUseCase cordenadasUseCase;
     private final RepresentanteUseCase representanteUseCase;
+    private final QuadroUseCase quadroUseCase;
 
     public List<Empresa> cadastrarEmpresas(MultipartFile arquivo) {
         log.info("Cadastrando empresas. Arquivo: {}", arquivo);
@@ -82,6 +84,13 @@ public class EmpresaUseCase {
                     Cordenadas cordenadas = cordenadasUseCase.buscarCordenadas(endereco);
                     endereco.setCordenadas(cordenadas);
 
+                    List<Quadro> quadros = quadroUseCase.listarPorRepresentante(representanteEmpresa.getId());
+
+                    Quadro quadro = quadros.stream()
+                            .filter(q -> q.getTitulo().equals("Cadastro"))
+                            .findFirst()
+                            .orElseThrow(QuadroPadraoNaoEncontradoException::new);
+
                     Empresa empresa = Empresa.builder()
                             .cnpj(cnpj)
                             .razaoSocial(razaoSocial)
@@ -93,6 +102,7 @@ public class EmpresaUseCase {
                             .visitado(false)
                             .representante(representanteEmpresa)
                             .nivelIcp(EnumMapper.mapperNivelIcp(nivelIcp))
+                            .quadro(quadro)
                             .build();
 
                     empresas.add(empresa);

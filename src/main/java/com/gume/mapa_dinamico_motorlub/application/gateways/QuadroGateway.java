@@ -4,6 +4,7 @@ import com.gume.mapa_dinamico_motorlub.domain.Quadro;
 import com.gume.mapa_dinamico_motorlub.domain.Representante;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface QuadroGateway {
@@ -12,4 +13,6 @@ public interface QuadroGateway {
     List<Quadro> listarPorRepresentante(Long idRepresentante);
 
     void deletar(UUID id);
+
+    Optional<Quadro> consultarPorId(UUID id);
 }

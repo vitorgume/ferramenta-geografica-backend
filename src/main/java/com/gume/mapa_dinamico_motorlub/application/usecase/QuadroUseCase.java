@@ -1,13 +1,12 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase;
 
+import com.gume.mapa_dinamico_motorlub.application.exceptions.QuadroNaoEncontradoException;
 import com.gume.mapa_dinamico_motorlub.application.gateways.QuadroGateway;
 import com.gume.mapa_dinamico_motorlub.domain.Quadro;
 import com.gume.mapa_dinamico_motorlub.domain.Representante;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,20 +28,24 @@ public class QuadroUseCase {
         return gateway.listarPorRepresentante(idRepresentante);
     }
 
-    public Quadro alterar(UUID id, Quadro novosDados) {
+    public Quadro alterar(UUID id, String novoTitulo) {
         Quadro quadro = this.consultarPorId(id);
-        quadro.setDados(novosDados);
+        quadro.setTitulo(novoTitulo);
         return gateway.salvar(quadro);
-    }
-
-    private Quadro consultarPorId(UUID id) {
-        Optional<Quadro>
-
-        return null;
     }
 
     public void deletar(UUID id) {
         this.consultarPorId(id);
         gateway.deletar(id);
+    }
+
+    public Quadro consultarPorId(UUID id) {
+        Optional<Quadro> quadro = gateway.consultarPorId(id);
+
+        if(quadro.isEmpty()) {
+            throw new QuadroNaoEncontradoException();
+        }
+
+        return quadro.get();
     }
 }

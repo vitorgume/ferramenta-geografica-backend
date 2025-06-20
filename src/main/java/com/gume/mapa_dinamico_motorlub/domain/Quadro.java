@@ -15,7 +15,4 @@ public class Quadro {
     private UUID id;
     private String titulo;
     private Representante representante;
-
-    public void setDados(Quadro novosDados) {
-    }
 }
