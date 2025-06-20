@@ -27,4 +27,5 @@ public class EmpresaDto {
     private String segmentoDescricao;
     private NivelIcp nivelIcp;
     private String descricaoNivelIcp;
+    private QuadroDto quadroDto;
 }

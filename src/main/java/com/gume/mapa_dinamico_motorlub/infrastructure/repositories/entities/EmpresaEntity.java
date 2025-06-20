@@ -40,4 +40,8 @@ public class EmpresaEntity {
 
     @Enumerated(EnumType.ORDINAL)
     private NivelIcp nivelIcp;
+
+    @ManyToOne
+    @JoinColumn(name = "id_quadro", nullable = false)
+    private QuadroEntity quadro;
 }

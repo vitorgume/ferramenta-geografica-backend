@@ -1,6 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.domain.empresa;
 
 import com.gume.mapa_dinamico_motorlub.domain.NivelIcp;
+import com.gume.mapa_dinamico_motorlub.domain.Quadro;
 import com.gume.mapa_dinamico_motorlub.domain.Representante;
 import lombok.*;
 
@@ -25,4 +26,5 @@ public class Empresa {
     private Boolean visitado;
     private Representante representante;
     private NivelIcp nivelIcp;
+    private Quadro quadro;
 }

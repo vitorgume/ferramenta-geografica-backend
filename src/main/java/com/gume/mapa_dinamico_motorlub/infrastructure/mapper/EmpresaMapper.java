@@ -18,6 +18,7 @@ public class EmpresaMapper {
                 .visitado(entity.getVisitado())
                 .representante(RepresentanteMapper.paraDomain(entity.getRepresentante()))
                 .nivelIcp(entity.getNivelIcp())
+                .quadro(QuadroMapper.paraDomain(entity.getQuadro()))
                 .build();
     }
 
@@ -34,6 +35,7 @@ public class EmpresaMapper {
                 .visitado(domain.getVisitado())
                 .representante(RepresentanteMapper.paraEntity(domain.getRepresentante()))
                 .nivelIcp(domain.getNivelIcp())
+                .quadro(QuadroMapper.paraEntity(domain.getQuadro()))
                 .build();
     }
 }

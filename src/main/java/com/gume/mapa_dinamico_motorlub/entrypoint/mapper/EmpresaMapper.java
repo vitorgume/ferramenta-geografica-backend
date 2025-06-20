@@ -5,21 +5,6 @@ import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EmpresaDto;
 
 public class EmpresaMapper {
 
-    public static Empresa paraDomain(EmpresaDto dto) {
-        return Empresa.builder()
-                .id(dto.getId())
-                .nomeFantasia(dto.getNomeFantasia())
-                .razaoSocial(dto.getRazaoSocial())
-                .cnpj(dto.getCnpj())
-                .telefone(dto.getTelefone())
-                .email(dto.getEmail())
-                .endereco(EnderecoMapper.paraDomain(dto.getEndereco()))
-                .segmento(dto.getSegmento())
-                .visitado(dto.getVisitado())
-                .nivelIcp(dto.getNivelIcp())
-                .build();
-    }
-
     public static EmpresaDto paraDto(Empresa domain) {
         return EmpresaDto.builder()
                 .id(domain.getId())
@@ -32,6 +17,7 @@ public class EmpresaMapper {
                 .segmentoDescricao(domain.getSegmento().getDescricao())
                 .visitado(domain.getVisitado())
                 .descricaoNivelIcp(domain.getNivelIcp().getDescricao())
+                .quadroDto(QuadroMapper.paraDto(domain.getQuadro()))
                 .build();
     }
 }
