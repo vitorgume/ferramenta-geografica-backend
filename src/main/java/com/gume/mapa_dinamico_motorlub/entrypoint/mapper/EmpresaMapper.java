@@ -1,6 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.mapper;
 
-import com.gume.mapa_dinamico_motorlub.domain.Empresa;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Empresa;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EmpresaDto;
 
 public class EmpresaMapper {
@@ -16,7 +16,6 @@ public class EmpresaMapper {
                 .endereco(EnderecoMapper.paraDomain(dto.getEndereco()))
                 .segmento(dto.getSegmento())
                 .visitado(dto.getVisitado())
-                .comentario(dto.getComentario())
                 .nivelIcp(dto.getNivelIcp())
                 .build();
     }
@@ -32,7 +31,6 @@ public class EmpresaMapper {
                 .endereco(EnderecoMapper.paraDto(domain.getEndereco()))
                 .segmentoDescricao(domain.getSegmento().getDescricao())
                 .visitado(domain.getVisitado())
-                .comentario(domain.getComentario())
                 .descricaoNivelIcp(domain.getNivelIcp().getDescricao())
                 .build();
     }

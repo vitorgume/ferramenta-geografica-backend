@@ -1,7 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase;
 
-import com.gume.mapa_dinamico_motorlub.application.gateways.EmpresaGateway;
-import com.gume.mapa_dinamico_motorlub.domain.Empresa;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Empresa;
 import com.gume.mapa_dinamico_motorlub.domain.Metrica;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

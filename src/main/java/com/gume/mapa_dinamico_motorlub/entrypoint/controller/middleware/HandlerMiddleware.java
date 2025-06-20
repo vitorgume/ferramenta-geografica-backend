@@ -9,11 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Map;
+
 @RestControllerAdvice
 public class HandlerMiddleware {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<MensagemErroException> exceptionInesperada(Exception exception) {
+        exception.printStackTrace();
         MensagemErroException mensagem = new MensagemErroException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         return ResponseEntity.status(mensagem.status()).body(mensagem);
     }

@@ -1,6 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.mapper;
 
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Endereco;
 import com.gume.mapa_dinamico_motorlub.infrastructure.repositories.entities.EnderecoEntity;
 
 public class EnderecoMapper {

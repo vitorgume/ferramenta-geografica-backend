@@ -1,6 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.mapper;
 
-import com.gume.mapa_dinamico_motorlub.domain.Rota;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Rota;
 import com.gume.mapa_dinamico_motorlub.infrastructure.repositories.entities.RotaEntity;
 
 public class RotaMapper {

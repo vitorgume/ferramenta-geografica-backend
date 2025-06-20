@@ -1,6 +1,5 @@
-package com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto;
+package com.gume.mapa_dinamico_motorlub.domain.empresa;
 
-import com.gume.mapa_dinamico_motorlub.domain.empresa.Empresa;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,9 +12,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-public class ComentarioDto {
+public class Comentario {
     private UUID id;
     private String conteudo;
     private LocalDateTime dataCriacao;
-    private EmpresaDto empresaDto;
+    private Empresa empresa;
 }

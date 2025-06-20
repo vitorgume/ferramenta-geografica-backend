@@ -1,13 +1,13 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto;
 
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
 import com.gume.mapa_dinamico_motorlub.domain.NivelIcp;
-import com.gume.mapa_dinamico_motorlub.domain.Segmento;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Segmento;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -25,7 +25,6 @@ public class EmpresaDto {
     private Segmento segmento;
     private Boolean visitado;
     private String segmentoDescricao;
-    private String comentario;
     private NivelIcp nivelIcp;
     private String descricaoNivelIcp;
 }

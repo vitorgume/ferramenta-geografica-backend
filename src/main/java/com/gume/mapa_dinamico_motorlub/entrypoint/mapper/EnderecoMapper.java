@@ -1,6 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.mapper;
 
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Endereco;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EnderecoDto;
 
 public class EnderecoMapper {

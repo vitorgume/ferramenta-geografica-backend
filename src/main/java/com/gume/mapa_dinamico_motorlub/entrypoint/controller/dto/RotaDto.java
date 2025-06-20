@@ -1,6 +1,5 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto;
 
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

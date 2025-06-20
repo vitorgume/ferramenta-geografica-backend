@@ -2,8 +2,7 @@ package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider.api;
 
 import com.gume.mapa_dinamico_motorlub.application.dto.DirectionsResponseDto;
 import com.gume.mapa_dinamico_motorlub.application.gateways.RotaMapaGateway;
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
-import lombok.RequiredArgsConstructor;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Endereco;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;

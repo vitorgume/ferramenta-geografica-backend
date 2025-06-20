@@ -1,7 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider.bd;
 
 import com.gume.mapa_dinamico_motorlub.application.gateways.RotaGateway;
-import com.gume.mapa_dinamico_motorlub.domain.Rota;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Rota;
 import com.gume.mapa_dinamico_motorlub.infrastructure.exceptions.DataProviderException;
 import com.gume.mapa_dinamico_motorlub.infrastructure.mapper.RotaMapper;
 import com.gume.mapa_dinamico_motorlub.infrastructure.repositories.RotaRepository;

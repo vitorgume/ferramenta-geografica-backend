@@ -1,6 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.repositories.entities;
 
-import com.gume.mapa_dinamico_motorlub.domain.Cordenadas;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Cordenadas;
 import jakarta.persistence.*;
 import lombok.*;
 

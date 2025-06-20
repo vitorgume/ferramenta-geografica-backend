@@ -1,7 +1,10 @@
-package com.gume.mapa_dinamico_motorlub.domain;
+package com.gume.mapa_dinamico_motorlub.domain.empresa;
 
+import com.gume.mapa_dinamico_motorlub.domain.NivelIcp;
+import com.gume.mapa_dinamico_motorlub.domain.Representante;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -21,6 +24,5 @@ public class Empresa {
     private Segmento segmento;
     private Boolean visitado;
     private Representante representante;
-    private String comentario;
     private NivelIcp nivelIcp;
 }

@@ -1,6 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.application.gateways;
 
-import com.gume.mapa_dinamico_motorlub.domain.Empresa;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Empresa;
 
 import java.util.List;
 import java.util.Optional;

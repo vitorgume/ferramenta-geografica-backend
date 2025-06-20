@@ -1,5 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.domain;
 
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Regiao;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

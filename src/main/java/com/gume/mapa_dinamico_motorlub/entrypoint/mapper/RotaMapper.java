@@ -1,6 +1,6 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.mapper;
 
-import com.gume.mapa_dinamico_motorlub.domain.Rota;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Rota;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.RotaDto;
 
 public class RotaMapper {

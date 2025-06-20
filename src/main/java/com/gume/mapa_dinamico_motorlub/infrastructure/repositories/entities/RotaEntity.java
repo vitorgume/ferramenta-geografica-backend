@@ -1,6 +1,5 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.repositories.entities;
 
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
 import jakarta.persistence.*;
 import lombok.*;
 

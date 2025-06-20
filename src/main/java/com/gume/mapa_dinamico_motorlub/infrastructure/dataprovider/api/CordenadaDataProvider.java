@@ -2,8 +2,8 @@ package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider.api;
 
 import com.gume.mapa_dinamico_motorlub.application.dto.GeocodingResponseDto;
 import com.gume.mapa_dinamico_motorlub.application.gateways.CordenadasGateway;
-import com.gume.mapa_dinamico_motorlub.domain.Cordenadas;
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Cordenadas;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Endereco;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

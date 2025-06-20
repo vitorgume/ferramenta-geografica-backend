@@ -1,7 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.dataprovider.bd;
 
 import com.gume.mapa_dinamico_motorlub.application.gateways.EnderecoGateway;
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Endereco;
 import com.gume.mapa_dinamico_motorlub.infrastructure.exceptions.DataProviderException;
 import com.gume.mapa_dinamico_motorlub.infrastructure.mapper.EnderecoMapper;
 import com.gume.mapa_dinamico_motorlub.infrastructure.repositories.EnderecoRepository;

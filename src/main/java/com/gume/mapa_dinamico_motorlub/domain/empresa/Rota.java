@@ -1,4 +1,4 @@
-package com.gume.mapa_dinamico_motorlub.domain;
+package com.gume.mapa_dinamico_motorlub.domain.empresa;
 
 import lombok.*;
 

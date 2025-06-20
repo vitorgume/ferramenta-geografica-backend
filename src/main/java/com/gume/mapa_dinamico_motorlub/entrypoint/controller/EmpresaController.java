@@ -42,10 +42,4 @@ public class EmpresaController {
         EmpresaDto resultado = EmpresaMapper.paraDto(useCase.alterarStatus(id));
         return ResponseEntity.ok(resultado);
     }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<EmpresaDto> adicionarComentario(@PathVariable("id") UUID idEmpresa, @RequestBody ComentarioDto comentario) {
-        EmpresaDto resultado = EmpresaMapper.paraDto(useCase.adicionarComentario(idEmpresa, comentario.getComentario()));
-        return ResponseEntity.ok(resultado);
-    }
 }

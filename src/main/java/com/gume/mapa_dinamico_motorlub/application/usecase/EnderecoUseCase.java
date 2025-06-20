@@ -1,7 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase;
 
 import com.gume.mapa_dinamico_motorlub.application.gateways.EnderecoGateway;
-import com.gume.mapa_dinamico_motorlub.domain.Endereco;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Endereco;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.application.usecase.mapper;
 
 import com.gume.mapa_dinamico_motorlub.domain.NivelIcp;
-import com.gume.mapa_dinamico_motorlub.domain.Segmento;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Segmento;
 
 public class EnumMapper {
 

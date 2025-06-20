@@ -3,8 +3,9 @@ package com.gume.mapa_dinamico_motorlub.application.usecase;
 import com.gume.mapa_dinamico_motorlub.application.gateways.EmpresaGateway;
 import com.gume.mapa_dinamico_motorlub.application.usecase.mapper.EnumMapper;
 import com.gume.mapa_dinamico_motorlub.domain.*;
-import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EmpresaDto;
-import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.EmpresaMapper;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Cordenadas;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Empresa;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Endereco;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class EmpresaUseCase {
 
                     String[] colunas = linha.split(",");
 
-                    if (colunas.length < 21) {
+                    if (colunas.length < 15) {
                         throw new RuntimeException("Linha inválida: " + linha);
                     }
 
@@ -91,7 +92,6 @@ public class EmpresaUseCase {
                             .segmento(EnumMapper.mapperSegmento(segmento))
                             .visitado(false)
                             .representante(representanteEmpresa)
-                            .comentario("")
                             .nivelIcp(EnumMapper.mapperNivelIcp(nivelIcp))
                             .build();
 
@@ -134,7 +134,7 @@ public class EmpresaUseCase {
         return empresa;
     }
 
-    private Empresa consultarPorId(UUID id) {
+    public Empresa consultarPorId(UUID id) {
         log.info("Consultando empresa pelo seu id. Id: {}", id);
         Optional<Empresa> empresaOptional = gateway.consultarPorId(id);
 
@@ -152,17 +152,5 @@ public class EmpresaUseCase {
         List<Empresa> empresas = gateway.listarPorRepresentante(id);
         log.info("Empresas listadas com sucesso. Empresas: {}", empresas);
         return empresas;
-    }
-
-    public Empresa adicionarComentario(UUID idEmpresa, String comentario) {
-        log.info("Adicionando novo comentário a empresa. Id da empresa: {}, Comentário: {}", idEmpresa, comentario);
-
-        Empresa empresa = consultarPorId(idEmpresa);
-        empresa.setComentario(comentario);
-        empresa = gateway.salvar(empresa);
-
-        log.info("Comentário adicionado a empresa com sucesso. Empresa salva: {}", empresa);
-
-        return empresa;
     }
 }

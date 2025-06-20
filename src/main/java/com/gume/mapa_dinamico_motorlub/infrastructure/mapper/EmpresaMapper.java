@@ -1,8 +1,7 @@
 package com.gume.mapa_dinamico_motorlub.infrastructure.mapper;
 
-import com.gume.mapa_dinamico_motorlub.domain.Empresa;
+import com.gume.mapa_dinamico_motorlub.domain.empresa.Empresa;
 import com.gume.mapa_dinamico_motorlub.infrastructure.repositories.entities.EmpresaEntity;
-import com.gume.mapa_dinamico_motorlub.infrastructure.repositories.entities.RepresentanteEntity;
 
 public class EmpresaMapper {
 
@@ -18,7 +17,6 @@ public class EmpresaMapper {
                 .segmento(entity.getSegmento())
                 .visitado(entity.getVisitado())
                 .representante(RepresentanteMapper.paraDomain(entity.getRepresentante()))
-                .comentario(entity.getComentario())
                 .nivelIcp(entity.getNivelIcp())
                 .build();
     }
@@ -35,7 +33,6 @@ public class EmpresaMapper {
                 .segmento(domain.getSegmento())
                 .visitado(domain.getVisitado())
                 .representante(RepresentanteMapper.paraEntity(domain.getRepresentante()))
-                .comentario(domain.getComentario())
                 .nivelIcp(domain.getNivelIcp())
                 .build();
     }
