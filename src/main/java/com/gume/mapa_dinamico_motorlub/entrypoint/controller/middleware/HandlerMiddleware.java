@@ -1,15 +1,11 @@
 package com.gume.mapa_dinamico_motorlub.entrypoint.controller.middleware;
 
-import com.gume.mapa_dinamico_motorlub.application.exceptions.CredenciasIncorretasException;
-import com.gume.mapa_dinamico_motorlub.application.exceptions.RepresentanteJaExistenteException;
-import com.gume.mapa_dinamico_motorlub.application.exceptions.RepresentanteNaoEncontradoException;
+import com.gume.mapa_dinamico_motorlub.application.exceptions.*;
 import com.gume.mapa_dinamico_motorlub.infrastructure.exceptions.DataProviderException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.Map;
 
 @RestControllerAdvice
 public class HandlerMiddleware {
@@ -42,6 +38,24 @@ public class HandlerMiddleware {
     @ExceptionHandler(DataProviderException.class)
     public ResponseEntity<MensagemErroException> erroDataProvider(DataProviderException exception) {
         MensagemErroException mensagem = new MensagemErroException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        return ResponseEntity.status(mensagem.status()).body(mensagem);
+    }
+
+    @ExceptionHandler(ComentarioNaoEncontrado.class)
+    public ResponseEntity<MensagemErroException> comentarioNaoEncontrado(ComentarioNaoEncontrado exception) {
+        MensagemErroException mensagem = new MensagemErroException(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(mensagem.status()).body(mensagem);
+    }
+
+    @ExceptionHandler(QuadroNaoEncontradoException.class)
+    public ResponseEntity<MensagemErroException> quadroNaoEncontrado(QuadroNaoEncontradoException exception) {
+        MensagemErroException mensagem = new MensagemErroException(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(mensagem.status()).body(mensagem);
+    }
+
+    @ExceptionHandler(QuadroPadraoNaoEncontradoException.class)
+    public ResponseEntity<MensagemErroException> quadroPadraoNaoEncontrado(QuadroPadraoNaoEncontradoException exception) {
+        MensagemErroException mensagem = new MensagemErroException(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(mensagem.status()).body(mensagem);
     }
 }

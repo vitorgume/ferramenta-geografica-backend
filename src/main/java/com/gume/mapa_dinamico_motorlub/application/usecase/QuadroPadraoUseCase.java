@@ -6,8 +6,6 @@ import com.gume.mapa_dinamico_motorlub.domain.Representante;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 @RequiredArgsConstructor
 public class QuadroPadraoUseCase {
