@@ -3,7 +3,9 @@ package com.gume.mapa_dinamico_motorlub.entrypoint.controller;
 import com.gume.mapa_dinamico_motorlub.application.usecase.EmpresaUseCase;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.ComentarioDto;
 import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.EmpresaDto;
+import com.gume.mapa_dinamico_motorlub.entrypoint.controller.dto.QuadroDto;
 import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.EmpresaMapper;
+import com.gume.mapa_dinamico_motorlub.entrypoint.mapper.QuadroMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +42,12 @@ public class EmpresaController {
     @PutMapping("/{id}")
     public ResponseEntity<EmpresaDto> alteraStatus(@PathVariable UUID id) {
         EmpresaDto resultado = EmpresaMapper.paraDto(useCase.alterarStatus(id));
+        return ResponseEntity.ok(resultado);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<EmpresaDto> alterarQuadro(@PathVariable UUID id, @RequestBody QuadroDto novoQuadro) {
+        EmpresaDto resultado = EmpresaMapper.paraDto(useCase.alterarQuadro(id, QuadroMapper.paraDomain(novoQuadro)));
         return ResponseEntity.ok(resultado);
     }
 }

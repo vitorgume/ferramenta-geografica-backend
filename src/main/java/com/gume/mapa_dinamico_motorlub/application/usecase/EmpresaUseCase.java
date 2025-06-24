@@ -160,7 +160,22 @@ public class EmpresaUseCase {
     public List<Empresa> listarPorRepresentante(Long id) {
         log.info("Listando empresas pelo representante. Id representante: {}", id);
         List<Empresa> empresas = gateway.listarPorRepresentante(id);
-        log.info("Empresas listadas com sucesso. Empresas: {}", empresas);
+        log.info("Empresas listadas com sucesso.");
         return empresas;
+    }
+
+    public Empresa alterarQuadro(UUID id, Quadro novoQuadro) {
+        log.info("Alterando quadro da empresa. Id: {}, Novo quadro: {}", id, novoQuadro);
+
+        Empresa empresa = this.consultarPorId(id);
+        Quadro quadro = quadroUseCase.consultarPorId(novoQuadro.getId());
+
+        empresa.setQuadro(quadro);
+
+        empresa = gateway.salvar(empresa);
+
+        log.info("Quadro da empresa alterado com sucesso. Empresa: {}", empresa);
+
+        return empresa;
     }
 }
